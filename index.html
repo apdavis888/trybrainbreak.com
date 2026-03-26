@@ -245,6 +245,27 @@
     .content-section ol li { font-size: 0.92rem; color: var(--modal-body); line-height: 1.8; margin-bottom: 0.4rem; }
     .tip-box { background: var(--modal-tag-bg); border: 1px solid var(--modal-tag-border); border-radius: 12px; padding: 0.85rem 1rem; font-size: 0.85rem; color: var(--modal-tag-color); margin-top: 0.9rem; line-height: 1.65; }
 
+@keyframes highlightPulse {
+  0%, 100% { 
+    background: var(--modal-tag-bg); 
+    border-color: var(--modal-tag-border); 
+    transform: scale(1); 
+  }
+  50% { 
+    background: rgba(220, 53, 69, 0.15); /* Soft red warning tint */
+    border-color: rgba(220, 53, 69, 0.6); 
+    transform: scale(1.03); 
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2); 
+  }
+}
+
+.urgent-box {
+  /* Pulses 3 times, each taking 1.2 seconds */
+  animation: highlightPulse 1.2s ease-in-out 3; 
+  /* Waits 0.5s for the page's fadeUp animation to finish first */
+  animation-delay: 0.5s; 
+}
+    
     /* ── Media grid (clips / songs) - UPDATED TO FLEXBOX ── */
     .media-grid { 
       display: flex; 
@@ -757,7 +778,7 @@
       <h2>Assumption of Risk</h2>
       <p>By using this site, you acknowledge that you are voluntarily participating in these activities and assume all risks associated with them. The creators of BrainBreak (Andrew Davis and Colin Lee) make no guarantees regarding outcomes and hold no liability for any personal harm, distress, or injury resulting from the use of this website.</p>
       
-      <div class="tip-box">If you or someone you know is in crisis, please call or text the Suicide & Crisis Lifeline at <strong>988</strong> (in the US) or contact your local emergency services immediately.</div>
+      <div class="tip-box urgent-box">If you or someone you know is in crisis, please call or text the Suicide & Crisis Lifeline at <strong>988</strong> (in the US) or contact your local emergency services immediately.</div>
     </div>
 
     <footer class="site-footer">
