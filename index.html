@@ -87,7 +87,8 @@
     }
 
     /* ── Layout ── */
-    .page { display: none; width: 100%; max-width: 760px; position: relative; z-index: 1; }
+    /* Reduced max-width to tighten up the visual space */
+    .page { display: none; width: 100%; max-width: 680px; position: relative; z-index: 1; }
     .page.active { display: flex; flex-direction: column; align-items: center; }
 
     /* ── Theme toggle ── */
@@ -164,10 +165,12 @@
       border: 1px solid var(--card-border); animation: fadeUp 0.7s ease 0.4s both;
       max-width: 520px;
     }
-    .topics { display: flex; flex-wrap: wrap; gap: 0.65rem; justify-content: center; margin-bottom: 2.75rem; }
+    .topics { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-bottom: 2.75rem; }
+    
+    /* Bigger Buttons */
     .topic-pill {
       background: var(--pill-bg); border: 1px solid var(--pill-border); border-radius: 50px;
-      padding: 0.45rem 1.2rem; font-size: 0.88rem; font-weight: 500; color: var(--pill-color);
+      padding: 0.75rem 1.5rem; font-size: 1.05rem; font-weight: 500; color: var(--pill-color);
       display: flex; align-items: center; gap: 0.4rem; backdrop-filter: blur(6px);
       cursor: pointer; position: relative; overflow: hidden;
       opacity: 0; animation: popIn 0.5s ease forwards;
@@ -180,7 +183,7 @@
     .topic-pill::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); transform: translateX(-100%); pointer-events: none; }
     .topic-pill:hover::after { transform: translateX(100%); transition: transform 0.45s ease; }
     .topic-pill:hover { background: var(--pill-hover-bg); transform: translateY(-4px) scale(1.04); box-shadow: 0 10px 28px rgba(30,120,80,0.2); }
-    .topic-pill .icon { font-size: 1.1rem; }
+    .topic-pill .icon { font-size: 1.2rem; }
 
     /* ── OVERLAY MODAL (intro cards) ── */
     .modal-overlay {
@@ -206,9 +209,11 @@
     .modal-features li:nth-child(2) { animation-delay: 0.12s; }
     .modal-features li:nth-child(3) { animation-delay: 0.19s; }
     .modal-actions { display: flex; gap: 0.75rem; }
-    .btn-begin { flex: 1; padding: 0.65rem 1.2rem; border-radius: 50px; border: none; background: var(--btn-bg); color: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.2s, transform 0.15s; }
+    
+    /* Beefed up modal buttons */
+    .btn-begin { flex: 1; padding: 0.8rem 1.5rem; border-radius: 50px; border: none; background: var(--btn-bg); color: #fff; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.2s, transform 0.15s; }
     .btn-begin:hover { background: var(--btn-hover); transform: scale(1.03); }
-    .btn-exit { padding: 0.65rem 1.2rem; border-radius: 50px; border: 1px solid var(--modal-tag-border); background: transparent; color: var(--modal-tag-color); font-size: 0.9rem; font-weight: 500; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+    .btn-exit { padding: 0.8rem 1.5rem; border-radius: 50px; border: 1px solid var(--modal-tag-border); background: transparent; color: var(--modal-tag-color); font-size: 1rem; font-weight: 500; cursor: pointer; font-family: inherit; transition: background 0.2s; }
     .btn-exit:hover { background: var(--modal-tag-bg); }
 
     /* ── INNER PAGES ── */
@@ -298,27 +303,29 @@
     .site-footer a { color: var(--text-sub); text-decoration: none; }
     .site-footer a:hover { text-decoration: underline; }
     .footer-divider { width: 60px; height: 2px; background: var(--card-border); border-radius: 2px; margin: 0 auto 1rem; }
-    .refs-link { font-size: 0.8rem; color: var(--modal-tag-color); text-decoration: underline; cursor: pointer; }
+    
+    /* New footer link layout */
+    .footer-links { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; margin-top: 1rem; }
+    .refs-link { font-size: 0.8rem; color: var(--modal-tag-color); text-decoration: underline; cursor: pointer; transition: color 0.2s;}
+    .refs-link:hover { color: var(--text-main); }
 
     @media (max-width: 520px) {
       .media-grid { grid-template-columns: 1fr 1fr; }
       .modal { padding: 2rem 1.5rem 1.5rem; }
       .content-section { padding: 1.25rem 1.25rem; }
+      .footer-links { gap: 0.75rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- Theme Toggle -->
 <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
   <span class="toggle-icon" id="themeIcon">🌙</span>
   <span id="themeLabel">Dark</span>
 </button>
 
-<!-- Back Button -->
 <button class="back-btn" id="backBtn" onclick="showHome()">← Home</button>
 
-<!-- ════════════════════════════════════════ HOME PAGE ════════════════════════════════════════ -->
 <div class="page active" id="home">
   <div class="site-title">
     <span class="brain">
@@ -344,12 +351,16 @@
   <footer class="site-footer">
     <div class="footer-divider"></div>
     © 2026 BrainBreak — an original concept by <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a><br>
-    Website designed &amp; built by <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a><br><br>
-    <span class="refs-link" onclick="showPage('refs')">References</span>
+    Website designed &amp; built by <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a>
+    <div class="footer-links">
+      <span class="refs-link" onclick="showPage('refs')">References</span>
+      <span class="refs-link" onclick="showPage('disclaimer')">Disclaimer</span>
+      <span class="refs-link" onclick="showPage('privacy')">Privacy Policy</span>
+      <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="refs-link">Report an Issue</a>
+    </div>
   </footer>
 </div>
 
-<!-- ═══════════════════════════ INTRO MODALS ═══════════════════════════ -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal" id="modalBox">
     <div class="modal-emoji" id="mEmoji"></div>
@@ -363,7 +374,6 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════════════ FILM PAGE ════════════════════════════════════════ -->
 <div class="page" id="filmPage">
   <div class="inner-page">
     <div class="page-header">
@@ -454,13 +464,17 @@
 
     <footer class="site-footer">
       <div class="footer-divider"></div>
-      © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a> &nbsp;|&nbsp;
-      <span class="refs-link" onclick="showPage('refs')">References</span>
+      © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a>
+      <div class="footer-links">
+        <span class="refs-link" onclick="showPage('refs')">References</span>
+        <span class="refs-link" onclick="showPage('disclaimer')">Disclaimer</span>
+        <span class="refs-link" onclick="showPage('privacy')">Privacy Policy</span>
+        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="refs-link">Report an Issue</a>
+      </div>
     </footer>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════ MUSIC PAGE ════════════════════════════════════════ -->
 <div class="page" id="musicPage">
   <div class="inner-page">
     <div class="page-header">
@@ -551,13 +565,17 @@
 
     <footer class="site-footer">
       <div class="footer-divider"></div>
-      © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a> &nbsp;|&nbsp;
-      <span class="refs-link" onclick="showPage('refs')">References</span>
+      © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a>
+      <div class="footer-links">
+        <span class="refs-link" onclick="showPage('refs')">References</span>
+        <span class="refs-link" onclick="showPage('disclaimer')">Disclaimer</span>
+        <span class="refs-link" onclick="showPage('privacy')">Privacy Policy</span>
+        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="refs-link">Report an Issue</a>
+      </div>
     </footer>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════ ART PAGE ════════════════════════════════════════ -->
 <div class="page" id="artPage">
   <div class="inner-page">
     <div class="page-header">
@@ -595,13 +613,17 @@
 
     <footer class="site-footer">
       <div class="footer-divider"></div>
-      © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a> &nbsp;|&nbsp;
-      <span class="refs-link" onclick="showPage('refs')">References</span>
+      © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a>
+      <div class="footer-links">
+        <span class="refs-link" onclick="showPage('refs')">References</span>
+        <span class="refs-link" onclick="showPage('disclaimer')">Disclaimer</span>
+        <span class="refs-link" onclick="showPage('privacy')">Privacy Policy</span>
+        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="refs-link">Report an Issue</a>
+      </div>
     </footer>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════ WRITING PAGE ════════════════════════════════════════ -->
 <div class="page" id="writingPage">
   <div class="inner-page">
     <div class="page-header">
@@ -639,13 +661,17 @@
 
     <footer class="site-footer">
       <div class="footer-divider"></div>
-      © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a> &nbsp;|&nbsp;
-      <span class="refs-link" onclick="showPage('refs')">References</span>
+      © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a>
+      <div class="footer-links">
+        <span class="refs-link" onclick="showPage('refs')">References</span>
+        <span class="refs-link" onclick="showPage('disclaimer')">Disclaimer</span>
+        <span class="refs-link" onclick="showPage('privacy')">Privacy Policy</span>
+        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="refs-link">Report an Issue</a>
+      </div>
     </footer>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════ REFERENCES PAGE ════════════════════════════════════════ -->
 <div class="page" id="refsPage">
   <div class="inner-page">
     <div class="page-header">
@@ -672,11 +698,85 @@
     <footer class="site-footer">
       <div class="footer-divider"></div>
       © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a>
+      <div class="footer-links">
+        <span class="refs-link" onclick="showPage('refs')">References</span>
+        <span class="refs-link" onclick="showPage('disclaimer')">Disclaimer</span>
+        <span class="refs-link" onclick="showPage('privacy')">Privacy Policy</span>
+        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="refs-link">Report an Issue</a>
+      </div>
     </footer>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════ MINI-PLAYER ════════════════════════════════════════ -->
+<div class="page" id="disclaimerPage">
+  <div class="inner-page">
+    <div class="page-header">
+      <span class="page-emoji">⚠️</span>
+      <div class="page-title">Disclaimer</div>
+      <div class="page-sub">Terms of Use and Medical Disclaimer</div>
+    </div>
+
+    <div class="content-section">
+      <h2>Educational Use Only</h2>
+      <p>The content provided on BrainBreak, including all text, media, prompts, and resources, is for educational and informational purposes only. It is intended to serve as a supplementary tool for mental wellness and self-reflection.</p>
+      
+      <h2>Not Medical Advice</h2>
+      <p><strong>BrainBreak is not a substitute for professional medical advice, diagnosis, or therapy.</strong> Never disregard professional psychological or medical advice nor delay in seeking professional advice or treatment because of something you have read on or accessed through this website.</p>
+      
+      <h2>Assumption of Risk</h2>
+      <p>By using this site, you acknowledge that you are voluntarily participating in these activities and assume all risks associated with them. The creators of BrainBreak (Andrew Davis and Colin Lee) make no guarantees regarding outcomes and hold no liability for any personal harm, distress, or injury resulting from the use of this website.</p>
+      
+      <div class="tip-box">If you or someone you know is in crisis, please call or text the Suicide & Crisis Lifeline at <strong>988</strong> (in the US) or contact your local emergency services immediately.</div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-divider"></div>
+      © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a>
+      <div class="footer-links">
+        <span class="refs-link" onclick="showPage('refs')">References</span>
+        <span class="refs-link" onclick="showPage('disclaimer')">Disclaimer</span>
+        <span class="refs-link" onclick="showPage('privacy')">Privacy Policy</span>
+        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="refs-link">Report an Issue</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<div class="page" id="privacyPage">
+  <div class="inner-page">
+    <div class="page-header">
+      <span class="page-emoji">🔒</span>
+      <div class="page-title">Privacy Policy</div>
+      <div class="page-sub">How we handle your data</div>
+    </div>
+
+    <div class="content-section">
+      <h2>Data Collection</h2>
+      <p>At BrainBreak, your privacy is our priority. We do not require you to create an account, nor do we directly collect, store, or sell any personal identifiable information (PII) such as your name, email, or usage data on our servers.</p>
+      
+      <h2>Third-Party Services & Embeds</h2>
+      <p>Our site utilizes embedded media content (such as YouTube videos) to provide therapeutic clips and music. When you interact with these third-party players, those external platforms may collect data about your interaction, use cookies, or track your behavior in accordance with their own privacy policies.</p>
+      
+      <h2>Feedback & Error Reporting</h2>
+      <p>If you choose to use our "Report an Issue" feature, you will be redirected to a third-party form provider (e.g., Google Forms). Any information you submit there is voluntary and will solely be used for the purpose of improving the BrainBreak website.</p>
+      
+      <h2>Changes to this Policy</h2>
+      <p>We reserve the right to modify this privacy policy at any time. Any changes will be updated directly on this page.</p>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-divider"></div>
+      © 2026 BrainBreak — <a href="https://www.ua.edu/" target="_blank">Andrew Davis</a> &amp; <a href="https://github.com/colinlee05" target="_blank">Colin Lee</a>
+      <div class="footer-links">
+        <span class="refs-link" onclick="showPage('refs')">References</span>
+        <span class="refs-link" onclick="showPage('disclaimer')">Disclaimer</span>
+        <span class="refs-link" onclick="showPage('privacy')">Privacy Policy</span>
+        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="refs-link">Report an Issue</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
 <div class="miniplayer-overlay" id="miniplayerOverlay" onclick="closeMiniPlayer(event)">
   <div class="miniplayer" id="miniplayerBox">
     <div class="mp-header">
@@ -701,11 +801,13 @@
 
   // ── Page routing ──
   const pageMap = {
-    film:    'filmPage',
-    music:   'musicPage',
-    art:     'artPage',
-    writing: 'writingPage',
-    refs:    'refsPage'
+    film:       'filmPage',
+    music:      'musicPage',
+    art:        'artPage',
+    writing:    'writingPage',
+    refs:       'refsPage',
+    disclaimer: 'disclaimerPage',
+    privacy:    'privacyPage'
   };
 
   function showPage(key) {
@@ -788,7 +890,7 @@
       return;
     }
     document.getElementById('mpTitle').textContent = title || 'Now Playing';
-    document.getElementById('mpFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    document.getElementById('mpFrame').src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
     document.getElementById('miniplayerOverlay').classList.add('active');
   }
 
